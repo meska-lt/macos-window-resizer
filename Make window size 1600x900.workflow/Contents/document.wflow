@@ -51,22 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>
-(* This AppleScript will resize the current application window to the height specified below. *)
-
-set the_application to (path to frontmost application as Unicode text)
-set appHeight to 900
-set appWidth to 1600
-
-tell application the_application
-	activate
-	reopen
-	set currentBoundsOfWindow to (get the bounds of the first window)
-	set yAxis to (get item 2 of currentBoundsOfWindow) as integer
-	set xAxis to (get item 1 of currentBoundsOfWindow) as integer
-	set the bounds of the first window to {xAxis, yAxis, xAxis + appWidth, yAxis + appHeight}
-end tell
-</string>
+					<string>(* This AppleScript will resize the foreground application window to the height and width specified by the user. *)set the_application to (path to frontmost application as Unicode text)tell application the_application	activate	reopen		set currentBoundsOfWindow to (get the bounds of the first window)	set currentWidth to (get item 3 of currentBoundsOfWindow) - (get item 1 of currentBoundsOfWindow) as text	set currentHeight to (get item 4 of currentBoundsOfWindow) - (get item 2 of currentBoundsOfWindow) as text	set currentSizeText to currentWidth &amp; "x" &amp; currentHeight	set prompt to "Target window size:"		set dialogResult to display dialog prompt default answer currentSizeText buttons {"Cancel", "Update"} default button 2	set updatedSize to text returned of dialogResult	set updatedSizeParts to my theSplit(updatedSize, "x")	set appWidth to (get item 1 of updatedSizeParts) as integer	set appHeight to (get item 2 of updatedSizeParts) as integer		set yAxis to (get item 2 of currentBoundsOfWindow) as integer	set xAxis to (get item 1 of currentBoundsOfWindow) as integer	set the bounds of the first window to {xAxis, yAxis, xAxis + appWidth, yAxis + appHeight}end tell(* Credit goes to https://erikslab.com/2007/08/31/applescript-how-to-split-a-string/ *)on theSplit(theString, theDelimiter)	-- save delimiters to restore old settings	set oldDelimiters to AppleScript's text item delimiters	-- set delimiters to delimiter to be used	set AppleScript's text item delimiters to theDelimiter	-- create the array	set theArray to every text item of theString	-- restore the old setting	set AppleScript's text item delimiters to oldDelimiters	-- return the result	return theArrayend theSplit</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
