@@ -12,7 +12,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Make window size 1600x900</string>
+				<string>Set window size</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
