@@ -4,4 +4,4 @@ A simple Worklfow written in AppleScript that updates size of foreground applica
 
 ## Usage
 
-Simply copy `.worklfow` directory to the `~/Library/Services/` directory.
+Simply copy `.workflow` directory to the `~/Library/Services/` directory.
